@@ -14,12 +14,12 @@ let handler = async (m, { conn, usedPrefix, command }) => {
         title: "Menu",
         sections: [
             {
-                title: "🌸 AETHERz-MD-PRO",
+                title: "🤖 AETHERz-MD-PRO",
                 rows: [{ title: "Lihat semua menu", description: "Klik untuk melihat semua menu yang tersedia", id: '.allmenu' }]
             },
             {
                 title: "",
-                rows: [{ title: "Hubungi owner bot", description: "Klik untuk nomor owner", id: '.menulist' }]
+                rows: [{ title: "Hubungi owner bot", description: "Klik untuk nomor owner", id: '.owner' }]
             },
             {
                 title: "",
