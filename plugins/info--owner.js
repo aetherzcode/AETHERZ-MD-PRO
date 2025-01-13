@@ -1,40 +1,49 @@
-import fetch from "node-fetch";
-import fs from "fs";
-import { pickRandom } from "../lib/other-function.js";
+import { default as makeWASocket } from "@whiskeysockets/baileys";
 
-let handler = async (m, { conn, usedPrefix, text, args, command }) => {
-  let nomorown = '6285798045817'; 
-  let aa = pickRandom(global.elainajpg); 
-  let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender;
-  let ephemeral = 3600000;
+const handler = async (m, { conn }) => {
+  // Mengambil data dari global config jika tersedia
+  const name = global.info.nameown || "Owner";
+  const nomorown = global.info.nomorown || null; 
+  const email = global.info.email || null; 
+  const website = global.link.web || null; 
 
-  let vcard = `BEGIN:VCARD\nVERSION:3.0\nFN:AETHER\nTEL;type=CELL;waid=${nomorown}:${nomorown}\nEND:VCARD`;
+  const nomorownText = nomorown ? `item1.TEL;waid=${nomorown}:${nomorown}@s.whatsapp.net` : "";
+  const emailText = email ? `item2.EMAIL;type=INTERNET:${email}` : "";
+  const websiteText = website ? `item4.URL:${website}` : "";
 
-  await conn.sendMessage(m.chat, {
-    contacts: {
-      displayName: 'AETHER',
-      contacts: [{ vcard }]
-    }
-  }, {
-    quoted: m,
-    ephemeralExpiration: ephemeral,
-    contextInfo: { 
-      externalAdReply: {  
-        title: 'Contact Owner', 
-        body: wm, 
-        sourceUrl: link.web,
-        thumbnail: global.aetherzjpg,
-        mediaType: 1,
-        showAdAttribution: true, 
-        renderLargerThumbnail: true 
+  const vcard = `BEGIN:VCARD
+VERSION:3.0
+N:Sy;Bot;;;
+FN:${name}
+item.ORG: Creator Bot
+${nomorownText}
+item1.X-ABLabel:${name}
+${emailText}
+item2.X-ABLabel:Email
+item3.ADR:;;🇮🇩 Indonesia;;;;
+item3.X-ABADR:ac
+${websiteText}
+item4.X-ABLabel:Website
+END:VCARD`;
+
+  try {
+    // Mengirimkan kontak owner
+    await conn.sendMessage(m.chat, {
+      contacts: {
+        displayName: "Contact Owner",
+        contacts: [{ vcard }],
       },
-      mentionedJid: [nomorown]
-    }
-  });
+    });
+
+    await conn.reply(m.chat, "Itu nomor kontak owner gua, jangan di spam ya mek.");
+  } catch (error) {
+    console.error("Error mengirim kontak:", error);
+    await conn.reply(m.chat, "Maaf, terjadi kesalahan saat mengirim kontak owner.");
+  }
 };
 
-handler.help = ['owner'];
-handler.tags = ['misc'];
-handler.command = /^(dev|owner|creator)$/i;
+handler.command = handler.help = ["owner", "creator"];
+handler.tags = ["info"];
+handler.limit = false;
 
 export default handler;
