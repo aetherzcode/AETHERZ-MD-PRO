@@ -12,7 +12,7 @@ handler.before = async function(m, { conn }) {
   if (/image/.test(mime)) {
    let media = await q.download();
    let url = await uploadImage(media);
-   let api = `https://api.itsrose.life/image/nsfwCheck?url=${encodeURIComponent(url)}&apikey=${global.rose}&threshold=0.9`;
+   let api = `https://api.betabotz.eu.org/api/tools/nsfw-detect?url=${encodeURIComponent(url)}&apikey=${global.lann}`;
    try {
       let { data } = await axios.get(api);
       let status = data.status;
