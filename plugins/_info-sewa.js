@@ -2,10 +2,10 @@ import fs from 'fs'
 let handler = async (m, { conn, usedPrefix }) => {
 let teks = `❏「 _*SEWABOT*_ 」
 
-❃ _*1 Minggu* Rp.8000 / Group_
-❃ _*2 Minggu* 20.0000 / Group_
-❃ _*2 Bulan* 30.000 / Group_
-❃ _*3 Bulan* 50.000k / Group_
+❃ _*1 Bulan:* Rp10.000 / Group_
+❃ _*2 Bulan:* Rp15.000 / Group_
+❃ _*3 Bulan:* Rp25.000 / Group_
+❃ _*Permanen:* Rp30.000k / Group_
 
 ❏ *_Fitur_*
 ❃ _Antilink_
@@ -17,10 +17,8 @@ let teks = `❏「 _*SEWABOT*_ 」
 ❃ _Dan Lain Lain_
 
 ❏「 _*PREMIUM*_ 」
-❃ _*1 Minggu:* Rp.5.000_
-❃ _*2 Minggu:* Rp.10.000_
-❃ _*1 Bulan:* Rp.20.000_
-❃ _*3 Bulan:* Rp.30.000_
+❃ _*1 Bulan:* Rp5.000_
+❃ _*Permanen:* Rp15.000_
 
 ❏ keuntungan user premium?
 🔓 unlock fitur *(Ketik .menuprem)*
