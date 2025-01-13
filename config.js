@@ -34,7 +34,8 @@ global.info = {
 	nomorbot: '6285810033632',
 	nomorown: '6285798045817',
 	namebot: '© Aᴇᴛʜᴇʀᴢ ᴍᴅ Pʀᴏ',
-	nameown: 'AETHER'
+	nameown: 'AETHER',
+	email: 'aetherscode@gmail.com'
 }
 /*==============================*/
 /*=========== STAFF ============*/
