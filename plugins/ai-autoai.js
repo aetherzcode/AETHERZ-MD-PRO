@@ -6,65 +6,76 @@ SCRIPT BY © AETHERZCODE
 */
 import axios from 'axios';
 
-let handler = async (m, { conn, text }) => {
-    conn.vynaGPT = conn.vynaGPT ? conn.vynaGPT : {};
+const handler = async (m, { conn, text, usedPrefix, command }) => {
+  conn.sessionAI = conn.sessionAI || {};
 
-    if (!text) throw `*Contoh:* .autoai *[on/off]*`;
+  if (!text) throw `🚩 ${usedPrefix + command} *enable/disable*`;
 
-    if (text === "on") {
-        conn.vynaGPT[m.sender] = {
-            messages: []
-        };
-        m.reply("[ ✓ ] Berhasil mengaktifkan bot VynaGPT");
-    } else if (text === "off") {
-        delete conn.vynaGPT[m.sender];
-        m.reply("[ ✓ ] Berhasil menonaktifkan bot VynaGPT");
-    }
+  if (text === "enable") {
+    conn.sessionAI[m.sender] = { sessionChat: [] };
+    m.reply("Success create sessions chat!");
+  } else if (text === "disable") {
+    delete conn.sessionAI[m.sender];
+    m.reply("Success delete sessions chat!");
+  }
 };
 
 handler.before = async (m, { conn }) => {
-    conn.vynaGPT = conn.vynaGPT ? conn.vynaGPT : {};
-    if (m.isBaileys && m.fromMe) return;
-    if (!m.text) return;
-    if (!conn.vynaGPT[m.sender]) return;
+  conn.sessionAI = conn.sessionAI || {};
+  if (m.isBaileys && m.fromMe) return;
+  if (!m.text) return;
+  if (!conn.sessionAI[m.sender]) return;
+  if ([".", "#", "!", "/", "\\"].some(prefix => m.text.startsWith(prefix))) return;
 
-    if (
-        m.text.startsWith(".") ||
-        m.text.startsWith("#") ||
-        m.text.startsWith("!") ||
-        m.text.startsWith("/") ||
-        m.text.startsWith("\\/")
-    ) return;
+  if (conn.sessionAI[m.sender] && m.text) {
+    const previousMessages = conn.sessionAI[m.sender].sessionChat || [];
+    /**
+     * @description Ubah prompt ini sesuai dengan keinginanmu.
+     * @note Usahakan memberikan logika yang masuk akal dan mudah dipahami!
+     */
+    const messages = [
+      { role: "system", content: "kamu adalah AETHERZ, Seorang Asisten pribadi yang di buat oleh AETHER yang siap membantu kapan pun!" },
+      { role: "assistant", content: `Saya AETHERZ, asisten pribadi yang siap membantu kamu kapan pun! Apa yang bisa saya bantu hari ini?` },
+      ...previousMessages.map((msg, i) => ({ role: i % 2 === 0 ? 'user' : 'assistant', content: msg })),
+      { role: "user", content: m.text }
+    ];
 
-    if (conn.vynaGPT[m.sender] && m.text) {
-        let name = conn.getName(m.sender);
-        await conn.sendMessage(m.chat, { react: { text: `⏱️`, key: m.key }});
+    try {
+      const chat = async (message) => {
+        return new Promise(async (resolve, reject) => {
+          try {
+            const params = {
+              message: message,
+              apikey: lann // Ganti dengan API key Anda
+            };
+            const { data } = await axios.post('https://api.betabotz.eu.org/api/search/openai-custom', params);
+            resolve(data);
+          } catch (error) {
+            reject(error);
+          }
+        });
+      };
 
-        const prompt = `Nama lu AETHERz-MD, lu AI asisten yang pintar dan ceria. Lu diciptain sama AETHER. Lu tuh ceria banget dan selalu bantuin orang lain, kadang-kadang bisa manis juga kalo ngomongnya manis sama lu. Hobi lu bercerita dan dengerin orang bercerita, dan gaya bicara lu aksen anak jaksel`;
-        const apiUrl = `https://rest-api.aetherss.xyz/api/ai?prompt=${encodeURIComponent(prompt)}&text=${encodeURIComponent(m.text)}`;
-
-        try {
-            const response = await axios.get(apiUrl, {
-                headers: { 'accept': 'application/json' }
-            });
-
-            const responseData = response.data;
-            const answer = responseData.result;
-            await conn.sendMessage(m.chat, { react: { text: `✅`, key: m.key }});
-            m.reply(answer);
-            conn.vynaGPT[m.sender].messages = [
-                { role: "system", content: `Halo, saya AETHERzGPT, dikembangkan oleh AETHER. Anda sedang berbicara dengan ${name}` },
-                { role: "user", content: m.text }
-            ];
-        } catch (error) {
-            console.error("Error fetching data:", error);
-            m.reply("Maaf, terjadi kesalahan saat memproses permintaan Anda.");
-        }
+      let res = await chat(messages);
+      if (res && res.result) {
+        await m.reply(res.result);
+        conn.sessionAI[m.sender].sessionChat = [
+          ...conn.sessionAI[m.sender].sessionChat,
+          m.text,
+          res.result
+        ];
+      } else {
+        m.reply("Kesalahan dalam mengambil data");
+      }
+    } catch (e) {
+      throw e;
     }
+  }
 };
 
 handler.command = ['autoai'];
-handler.tags = ["ai"];
-handler.help = ['autoai'].map(a => a + " *[on/off]*");
+handler.tags = ['ai'];
+handler.help = ['autoai'].map(a => a + ' *enable/disable*');
+handler.premium = true;
 
 export default handler;
