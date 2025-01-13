@@ -46,29 +46,16 @@ global.mods = []
 global.prems = [] 
 /*==============================*/
 /*=========== GlobalAPI ============*/
-global.zein = '_'
-global.skizo = '_'
-global.rose = '_'
 global.lol = '_'
 global.lann = '_'
 /*==============================*/
 /*==============API ==============*/
 global.APIs = {
-    // API Prefix
-    // name: 'https://website'
     lol: 'https://api.lolhuman.xyz',
-    zein: 'https://api.zahwazein.xyz',
-    rose: 'https://api.itsrose.life',
-    skizo: 'https://skizo.tech',
     lann: 'https://api.betabotz.eu.org'
 }
 global.APIKeys = {
-    // APIKey Here
-    // 'https://website': 'apikey'
-    'https://api.zahwazein.xyz': '_',
     'https://api.lolhuman.xyz': '_',
-    'https://api.itsrose.life': '_',
-    'https://skizo.tech' : '_',
     'https://api.betabotz.eu.org' : '_'
 }
 /*==============================*/
