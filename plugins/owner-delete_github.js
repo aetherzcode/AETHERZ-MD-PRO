@@ -1,14 +1,15 @@
-let handler = async(m, { conn, text, usedPrefix, command }) => {
-    import axios from 'axios';
+import axios from 'axios';
 
+const handler = async (m, { conn, text, usedPrefix, command }) => {
     const owner = global.ownerrepo;
     const repo = global.repo;
     const githubToken = global.githubToken;
-    const branch = 'main'; // Branch tempat file dihapus
+    const branch = 'master';
 
-    const getFileSha = async(owner, repo, filePath, branch) => {
+    // Fungsi untuk mendapatkan SHA file
+    const getFileSha = async (owner, repo, filePath, branch) => {
         const response = await axios.get(
-            `https://api.github.com/repos/${ownerrepo}/${repo}/contents/${filePath}?ref=${branch}`, {
+            `https://api.github.com/repos/${owner}/${repo}/contents/${filePath}?ref=${branch}`, {
                 headers: {
                     Authorization: `Bearer ${githubToken}`,
                 },
@@ -57,4 +58,4 @@ handler.command = /^(delgh|deletegithub)$/i;
 handler.limit = true;
 handler.rowner = true;
 
-export default handler;;
+export default handler;
