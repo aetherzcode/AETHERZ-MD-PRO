@@ -58,14 +58,14 @@ let handler = async (m, { conn, text }) => {
         let { key } = await conn.sendMessage(m.chat, { text: `... ` }, { quoted: m })
 
         const { data } = await axios({
-            baseURL: 'https://api.itsrose.life',
+            baseURL: 'https://api.betabotz.eu.org',
             url: '/chatGPT/turbo',
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             params: {
-                'apikey': global.rose
+                'apikey': global.lann
             },
             data: payloads,
         });
