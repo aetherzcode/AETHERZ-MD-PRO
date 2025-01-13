@@ -1,7 +1,7 @@
 ## AETHERZ-MD-PRO WhatsApp Bot
 
 <div id="header" align="center">
-  <img src="https://github.com/XM4ZE/DATABASE/blob/master/wallpaper/eula-genshin.gif?raw=true" width="200" height="200"/>
+  <img src="https://files.catbox.moe/3cj9sd.jpg"/>
 </div>
 
 **Information:**
