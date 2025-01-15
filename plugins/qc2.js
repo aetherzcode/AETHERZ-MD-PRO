@@ -87,7 +87,7 @@ const handler = async (m, { conn, args, name }) => { // tambahkan nama ke dalam 
     };
 
     try {
-        const json = await axios.post('https://btzqc.betabotz.eu.org/generate', obj, {
+        const json = await axios.post('https://qc.botcahx.eu.org/generate', obj, {
             headers: {
                 'Content-Type': 'application/json'
             }
