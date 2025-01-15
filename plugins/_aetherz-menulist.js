@@ -163,8 +163,8 @@ let handler = async (m, { conn, usedPrefix, command }) => {
     conn.relayMessage(m.chat, msgs.message, {})
 }
 
-handler.help = ['help']
+handler.help = ['menulist']
 handler.tags = ['main']
-handler.command = /^(menu|listmenu|menulist)$/i
+handler.command = /^(listmenu|menulist)$/i
 
 export default handler
