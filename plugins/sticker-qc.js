@@ -57,7 +57,7 @@ async function fakechat(text, name, url) {
         "replyMessage": {}
         }]
     }
-    let res = await axios.post('https://quickchat.xmaze.my.id/generate', body);
+    let res = await axios.post('https://qc.botcahx.eu.org/generate', body);
     return Buffer.from(res.data.result.image, "base64");
 }
 
@@ -86,7 +86,7 @@ async function fakechatImg(url, text, name, avatar) {
         "replyMessage": {}
         }]
     }
-    let res = await axios.post('https://quickchat.xmaze.my.id/generate', body);
+    let res = await axios.post('https://qc.botcahx.eu.org/generate', body);
     return Buffer.from(res.data.result.image, "base64");
 }
 
