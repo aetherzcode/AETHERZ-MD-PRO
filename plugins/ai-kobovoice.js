@@ -7,7 +7,7 @@ let handler = async (m, { conn, usedPrefix, command }) => {
 	if (/audio|video/.test(mime)) {
 		let media = await q.download?.();
 		m.reply(wait);
-		let wss = "wss://yanzbotz-waifu-yanzbotz.hf.space/queue/join";
+		let wss = "https://yanzbotz-waifu-yanzbotz.hf.space/queue/join";
 
 		function generateRandomLetters(length) {
 			let result = "";
