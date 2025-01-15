@@ -1,16 +1,1 @@
-import fs from 'fs'
-
-let handler = async (m, { conn }) => {
-	let tqto = `Thanks Too :
-	
-*• Thanks To •*
-*- AETHER * _https://aetherz.xyz_
-
-`;
-	await conn.sendMessage(m.chat, { image: { url: 'https://telegra.ph/file/39497eb26a44d30a9b190.jpg' }, caption: tqto }, m)
-}
-handler.help = ['tqto']
-handler.tags = ['info']
-handler.command = /^(tqto)$/i;
-
-export default handler;
+const _0x32efc8=_0x58c4;(function(_0x328c14,_0xcd8282){const _0x19529f=_0x58c4,_0x4c6037=_0x328c14();while(!![]){try{const _0x3ccec0=-parseInt(_0x19529f(0x111))/0x1*(-parseInt(_0x19529f(0x114))/0x2)+parseInt(_0x19529f(0x10d))/0x3*(parseInt(_0x19529f(0x115))/0x4)+parseInt(_0x19529f(0x11a))/0x5*(-parseInt(_0x19529f(0x10e))/0x6)+-parseInt(_0x19529f(0x112))/0x7+-parseInt(_0x19529f(0x11e))/0x8+-parseInt(_0x19529f(0x10f))/0x9*(-parseInt(_0x19529f(0x113))/0xa)+parseInt(_0x19529f(0x116))/0xb;if(_0x3ccec0===_0xcd8282)break;else _0x4c6037['push'](_0x4c6037['shift']());}catch(_0x184630){_0x4c6037['push'](_0x4c6037['shift']());}}}(_0x1473,0x1acac));import _0xbe6182 from'fs';function _0x1473(){const _0xb1bfa1=['chat','1605560tZnEdA','3ZBCgCF','6NURAiF','9Ddyqfo','info','6671pceKmc','1128281YAaXPu','911910hNDcmc','22ZFURxr','269796nGfMcS','4296468ngmLep','tqto','sendMessage','help','754955SRxQxU','command','Thanks\x20Too\x20:\x0a\x09\x0a*•\x20Thanks\x20To\x20•*\x0a*-\x20AETHER\x20*\x20_https://aetherz.xyz_\x0a\x0a'];_0x1473=function(){return _0xb1bfa1;};return _0x1473();}let handler=async(_0x4aeafd,{conn:_0x30e671})=>{const _0x5e4f29=_0x58c4;let _0x105496=_0x5e4f29(0x11c);await _0x30e671[_0x5e4f29(0x118)](_0x4aeafd[_0x5e4f29(0x11d)],{'image':{'url':'https://telegra.ph/file/39497eb26a44d30a9b190.jpg'},'caption':_0x105496},_0x4aeafd);};function _0x58c4(_0x468136,_0x206e42){const _0x1473c9=_0x1473();return _0x58c4=function(_0x58c40a,_0x367c7c){_0x58c40a=_0x58c40a-0x10d;let _0x142913=_0x1473c9[_0x58c40a];return _0x142913;},_0x58c4(_0x468136,_0x206e42);}handler[_0x32efc8(0x119)]=[_0x32efc8(0x117)],handler['tags']=[_0x32efc8(0x110)],handler[_0x32efc8(0x11b)]=/^(tqto)$/i;export default handler;
