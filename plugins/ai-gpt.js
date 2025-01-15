@@ -1,22 +1,32 @@
-import axios from 'axios'
-let handler = async (m, {
-  conn,
-  usedPrefix,
-  command,
-  text
-}) => {
+import fetch from 'node-fetch';
+
+var handler = async (m, { text, usedPrefix, command }) => {
+  const wait = "_「P R O C E S S 」_";
+
+  if (!text) throw `Masukkan pertanyaan!\n\n*Contoh:* Siapa presiden Indonesia?`;
+
   try {
-    if (!text) return m.reply(usedPrefix + command + 'Kucing nakal')
-    m.reply('Wait')
-    let json = await axios.get('https://api.alyachan.dev/api/gpt-3.5-turbo?prompt=' + text + '&apikey=Ariel1')
-    m.reply(json.data.data.content)
-  } catch (e) {
-    console.log(e)
-    m.reply(e)
+    await m.reply(wait);
+
+    const response = await fetch(`https://api.ryzendesu.vip/api/ai/chatgpt?text=${encodeURIComponent(text)}`);
+    console.log("Status:", response.status);
+
+    if (!response.ok) throw `Error: ${response.status} - ${response.statusText}`;
+
+    const res = await response.json(); 
+    console.log("Parsed Respons:", res);
+
+    if (!res.success || !res.response) throw "API tidak mengembalikan pesan yang valid.";
+
+    await m.reply(res.response);
+  } catch (err) {
+    console.error("Error:", err);
+    throw "Terjadi kesalahan dalam menjawab pertanyaan.";
   }
-}
-handler.help = ['ai']
-handler.tags = ['internet']
-handler.limit = 1
-handler.command = ['openai', 'ai']
-export default handler
+};
+
+handler.command = handler.help = ['ai', 'openai', 'chatgpt'];
+handler.tags = ['tools'];
+handler.limit = true;
+
+export default handler;
