@@ -1,22 +1,66 @@
-import axios from "axios";
+import fetch from 'node-fetch';
 
-const handler = async (m, { conn, text }) => {
-    if (!text) throw 'how can I assist you today?';
+let handler = async (m, {
+  conn,
+  text,
+  usedPrefix,
+  command
+}) => {
+  if (command == 'bing') {
+    if (!text) throw `Example : ${usedPrefix + command} siapa presiden Indonesia?`;
     try {
-        conn.reply(m.chat, `_Please wait! This process may take up to several minutes._`, m);
-        let { data } = await axios.get(`http://15.235.142.199/api/ai/bingAi?prompt=${text}&apikey=uhnKkdVjsVeICuI`);
-        let results = data.image;
-        if (!results || results.length === 0) throw 'No results found.';
-        
-        let links = results.map((link, index) => `*(${index + 1})* [${link}]`).join('\n');
-        conn.sendFile(m.chat, results[0], 'bing.png', `*The following are the results of a search with the query:*_${text}_\n\n*Following are the photo links generated from Bing AI:*${links}\n\n\n*How to retrieve media using the link above:*_.get <link>_\n*Example:*_.get ${results[Math.floor(Math.random() * results.length)]}_`, m);
-    } catch (err) {
-        m.reply('Error: ' + err);
-    }
-};
+      m.reply(wait)
+      let response = await fetch('https://api.betabotz.eu.org/api/search/bing-chat', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            text: text,
+            apikey: lann
+          })
+        })
+        .then(res => res.json());
 
-handler.command = handler.help = ['bing-ai2'];
-handler.tags = ['aiv2'];
-handler.limit = 10;
+      await conn.reply(m.chat, response.message, m);
+    } catch (e) {
+      console.log(e);
+      throw `*Error:* ${eror}`;
+    }
+  }
+  if (command == 'bingimg') {
+    if (!text) throw `Contoh: ${usedPrefix + command} anak berlari menggunakan pakaian merah 3d animation`;
+    try {
+      m.reply(wait)
+      let response = await fetch('https://api.betabotz.eu.org/api/search/bing-img', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            text: text,
+            apikey: lann
+          })
+        })
+        .then(res => res.json());
+
+      for (let i = 0; i < 4; i++) {
+        let img = response.result[i]
+        await sleep(3000)
+        await conn.sendFile(m.chat, img, 'bing_img.png', `*PROMPT:* ${text}`, m)
+      }
+    } catch (error) {
+      throw `Error: ${eror}`
+    }
+  }
+}
+
+handler.command = handler.help = ['bing', 'bingimg']
+handler.tags = ['aiv2']
+handler.limit = true
 
 export default handler;
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
