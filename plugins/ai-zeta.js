@@ -6,21 +6,28 @@ SCRIPT BY © AETHERZCODE
 */
 import fetch from "node-fetch";
 
+let wm = "© AETHERZCODE";
+let link = { web: "https://aetherz.xyz" };
+global.aetherzjpg = "https://files.catbox.moe/3cj9sd.jpg";
+
 let handler = async (m, { conn, usedPrefix, command, text }) => {
     try {
-        if (!text) throw `Contoh penggunaan: ${usedPrefix + command} Hai zetaa`;
+        if (!text) throw `Contoh penggunaan: ${usedPrefix + command} Hai Meta LLAMA`;
 
         await conn.sendMessage(m.chat, { react: { text: `🪀`, key: m.key } });
 
-        let response = await fetch(`https://api.kyuurzy.site/api/ai/aizeta?query=${encodeURIComponent(text)}`);
-        let data = await response.json();
+        let response = await fetch(`https://api.ryzendesu.vip/api/ai/meta-llama?text=${encodeURIComponent(text)}`);
+        if (!response.ok) throw `Error API: ${response.status} - ${response.statusText}`;
 
-        if (data.status && data.result && data.result.status) {
+        let data = await response.json();
+        console.log("Respons API:", data);
+
+        if (data.action === "success" && data.response) {
             await conn.sendMessage(m.chat, {
-                text: data.result.answer,
+                text: data.response,
                 contextInfo: {
                     externalAdReply: {
-                        title: "Z E T A",
+                        title: "L L A M A",
                         body: wm,
                         thumbnailUrl: global.aetherzjpg,
                         sourceUrl: link.web,
@@ -30,7 +37,7 @@ let handler = async (m, { conn, usedPrefix, command, text }) => {
                 }
             });
         } else {
-            console.log("Tidak ada respons dari API atau terjadi kesalahan.");
+            console.log("API mengembalikan respons yang tidak valid:", data);
             await m.reply("Maaf, tidak ada respons dari API atau terjadi kesalahan.");
         }
     } catch (error) {
@@ -39,7 +46,7 @@ let handler = async (m, { conn, usedPrefix, command, text }) => {
     }
 };
 
-handler.help = ["zeta"];
+handler.help = ["llama"];
 handler.tags = ["aiv2"];
-handler.command = /^aizeta|zeta$/i;
+handler.command = /^aillama|llama$/i;
 export default handler;
