@@ -5,7 +5,7 @@ SCRIPT BY © AETHERZCODE
 •• (github.com/aetherzcode) 
 */
 
-import { sticker } from '../lib/sticker.js'
+import { sticker } from '../lib/sticker2.js'
 import axios from 'axios'
 
 const handler = async (m, { conn, args }) => {
@@ -46,7 +46,7 @@ const handler = async (m, { conn, args }) => {
         }]
     };
 
-    const json = await axios.post('https://btzqc.betabotz.eu.org/generate', obj, {
+    const json = await axios.post('https://qc.botcahx.eu.org/generate', obj, {
         headers: {
             'Content-Type': 'application/json'
         }
