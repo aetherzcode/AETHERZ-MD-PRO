@@ -28,7 +28,7 @@ command
 };
 handler.help = ['jadianime'];
 handler.command = ['toanime', 'jadianime'];
-handler.tags = ['maker'];
+handler.tags = ['ai'];
 handler.limit = 5;
 
 export default handler;;
