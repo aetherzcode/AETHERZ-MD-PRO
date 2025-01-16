@@ -11,12 +11,13 @@ const handler = async (m, { conn, isROwner }) => {
       if (fs.existsSync("node_modules")) {
          m.reply("Folder 'node_modules' tidak ikut di backup.");
       }
-      
-      if (fs.existsSync("tmp")) {
-         m.reply("Folder 'tmp' tidak ikut di backup.");
-      }
 
-      let zipCommand = `zip -r ${zipFileName} * -x "node_modules/*" -x "tmp/*"`;
+      let zipCommand = `
+         zip -r ${zipFileName} * \
+         -x "node_modules/*" \
+         -x "tmp/*.webp"
+      `;
+
       await exec_(zipCommand);
 
       const file = fs.readFileSync(zipFileName);
