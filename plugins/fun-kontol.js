@@ -15,7 +15,6 @@ let handler = async (m, { conn, command, text }) => {
 handler.help = ['cekkontol <nama>']
 handler.tags = ['fun']
 handler.command = /^cekkontol/i
-handler.premium = true
 export default handler 
 
 function pickRandom(list) {
