@@ -12,12 +12,12 @@ global.aetherzjpg = "https://files.catbox.moe/3cj9sd.jpg";
 
 let handler = async (m, { conn, usedPrefix, command, text }) => {
     try {
-        if (!text) throw Contoh penggunaan: ${usedPrefix + command} Hai Meta LLAMA;
+        if (!text) throw `Contoh penggunaan: ${usedPrefix + command} Hai Meta LLAMA`;
 
-        await conn.sendMessage(m.chat, { react: { text: 🪀, key: m.key } });
+        await conn.sendMessage(m.chat, { react: { text: `🪀`, key: m.key } });
 
-        let response = await fetch(https://api.ryzendesu.vip/api/ai/meta-llama?text=${encodeURIComponent(text)});
-        if (!response.ok) throw Error API: ${response.status} - ${response.statusText};
+        let response = await fetch(`https://api.ryzendesu.vip/api/ai/meta-llama?text=${encodeURIComponent(text)}`);
+        if (!response.ok) throw `Error API: ${response.status} - ${response.statusText}`;
 
         let data = await response.json();
         console.log("Respons API:", data);
