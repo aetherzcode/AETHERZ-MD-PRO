@@ -64,9 +64,9 @@ global.pay = {
 }
 /*==============================*/
 /*========= GITHUB ============*/
-global.ownerrepo = 'aetherzcode'
-global.repo = 'AETHERZ-MD-PRO'
-global.githubToken = '_'
+global.ownerrepo = 'aetherzcode' // USERNAME GITHUB
+global.repo = 'AETHERZ-MD-PRO' // REPO BOT NYA
+global.githubToken = '_' // TOKEN GITHUB KALIAN
 /*=============================*/
 /*========= NOMOR ============*/
 global.info = {
@@ -74,8 +74,7 @@ global.info = {
 	nomorown: '6285798045817',
 	namebot: '© Aᴇᴛʜᴇʀᴢ ᴍᴅ Pʀᴏ',
 	nameown: 'AETHER',
-	email: process.env.EMAIL,
-        pwemail: process.env.PWEMAIL
+	email: 'aetherscode@gmail.com',
 }
 /*==============================*/
 /*=========== STAFF ============*/
