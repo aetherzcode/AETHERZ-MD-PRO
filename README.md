@@ -74,8 +74,8 @@ global.info = {
 	nomorown: '6285798045817',
 	namebot: '© Aᴇᴛʜᴇʀᴢ ᴍᴅ Pʀᴏ',
 	nameown: 'AETHER',
-	email: 'aetherscode@gmail.com',
-        pwemail: '_'
+	email: process.env.EMAIL,
+        pwemail: process.env.PWEMAIL
 }
 /*==============================*/
 /*=========== STAFF ============*/
