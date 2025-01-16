@@ -28,7 +28,7 @@
 | Owner Menu | Quotes Menu | Rpg Menu |
 | Stiker Menu | Tools Menu |
 
-## Price Script No Encryption 
+## Warning Please Read This!  
 
 This script is in 60% Encryption
 if you want without Encryption please buy it at a price of IDR 50,000
