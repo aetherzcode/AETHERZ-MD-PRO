@@ -6,8 +6,8 @@ let handler = async (m, { conn, command, text }) => {
 ╭━━━━°「 *Kontol ${text}* 」°
 ┃
 ┊• Nama : ${text}
-┃• Kontol : ${pickRandom(['ih item','Belang wkwk','Muluss','Putih Mulus','Black Doff','Pink wow','Item Glossy'])}
-┊• True : ${pickRandom(['perjaka','ga perjaka','udah pernah dimasukin','masih ori','jumbo'])}
+┃• Kontol : ${pickRandom(['ih item kali banh','Belang-belang wkwk','Muluss','Putih Mulus','Black Doff','Pink wow','Item Glossy'])}
+┊• True : ${pickRandom(['perjaka','ga perjaka','udah pernah ngewe','masih ori','jumbo'])}
 ┃• jembut : ${pickRandom(['lebat','ada sedikit','gada jembut','tipis','muluss'])}
 ╰═┅═━––––––๑
 `.trim(), m)
