@@ -30,10 +30,8 @@
 
 ## Price Script No Encryption 
 
-| Name         | Index.js | Main.js | Handler.js | Price         |
-|--------------|----------|---------|------------|---------------|
-| Free Script  | ❌       | ❌      | ❌         | 0 IDR         |
-| Paid Script  | ✔️       | ✔️      | ✔️         | 50,000 IDR    |
+This script is in 60% Encryption
+if you want without Encryption please buy it at a price of IDR 50,000
 
 ## License
 
