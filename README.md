@@ -126,7 +126,7 @@ global.lann = '_'
 
 
 /*============== API ==============*/
-// ISI APIKEY KALIAN DI BAGIAN 'ENTER YOUR APIKEY' SIMBOL JANGAN DI HAPUS
+// ISI APIKEY KALIAN DI BAGIAN '_' SIMBOL ' JANGAN DI HAPUS
 global.APIs = {
   btc: 'https://api.lolhuman.xyz',
   lann: 'https://api.betabotz.org'
