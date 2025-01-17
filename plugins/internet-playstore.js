@@ -4,7 +4,7 @@ let handler = async(m, { conn, text }) => {
   if (!text) throw `Mau Cari Apk Apa?`
   m.reply(wait)
   try {
-  let res = await fetch(`https://api.xyroinee.xyz/api/search/playstore?q=${text}&apikey=UnlimitedXyroineeKey`)
+  let res = await fetch(`https://api.kenshiro.biz.id/api/search/playstore?q=${text}`)
   let anu = await res.json()
   anu = anu.data.map((v) => `*Nama:* ${v.nama}\n*Developer:* ${v.developer}\n*Rate:* ${v.rate}\n*Rate 2:* ${v.rate2}\n*Link:* ${v.link}\nLinkDev: ${v.link_dev}`).join`\n\n°°°°°°°°°°°°°°°°°°°°°°°°°°°°°\n\n`
   m.reply(anu)
