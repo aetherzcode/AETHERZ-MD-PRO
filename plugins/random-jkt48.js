@@ -7,7 +7,7 @@ const handler = async (m, { conn, usedPrefix, text, args, command }) => {
 
   if (!count) {
     try {
-      const tio = await fetch(`https://api.lolhuman.xyz/api/pinterest2?apikey=${global.lol}&query=${query}`);
+      const tio = await fetch(`https://api.betabotz.eu.org/api/search/pinterest?text1=${query}&apikey=${global.lann}`);
       const p = await tio.json();
       let url = p.result[Math.floor(Math.random() * p.result.length)];
       conn.sendFile(m.chat, url, 'loliiiii.jpg', `*🔖R A N D O M   J K T 4 8*`, m);
@@ -20,7 +20,7 @@ const handler = async (m, { conn, usedPrefix, text, args, command }) => {
       throw 'Jumlah gambar terlalu banyak! Maksimal 10 gambar.';
     }
     try {
-      let url = `https://api.lolhuman.xyz/api/pinterest2?apikey=GataDios&query=${query}`;
+      let url = `https://api.betabotz.eu.org/api/search/pinterest?text1=${query}&apikey=${global.lann}`;
       let res = await fetch(url);
       let data = await res.json();
   
