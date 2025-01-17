@@ -44,6 +44,7 @@
     "@google/generative-ai": "^0.21.0",
     "@vitalets/google-translate-api": "^9.2.0",
     "@whiskeysockets/baileys": "github:@PhysicalAbility/Baileys",
+    "@xct007/frieren-scraper": "npm:@xct007/frieren-scraper@latest",
     "acrcloud": "^1.4.0",
     "aki-api": "^6.0.9",
     "awesome-phonenumber": "^2.68.0",
@@ -52,17 +53,19 @@
     "btch-downloader": "npm:btch-downloader@latest",
     "canvafy": "^7.1.0",
     "cfonts": "^2.10.0",
-    "chalk": "^5.3.0",
+    "chalk": "^5.4.1",
     "check-disk-space": "^3.4.0",
     "cheerio": "1.0.0-rc.10",
     "chess.js": "^1.0.0-beta.6",
     "colors": "1.4.0",
     "crypto": "^1.0.1",
     "didyoumean": "^1.2.2",
+    "dotenv": "^16.4.7",
     "express": "^4.17.3",
     "ffmpeg-static": "^5.2.0",
     "file-type": "^17.1.1",
     "fluent-ffmpeg": "^2.1.2",
+    "force": "^0.0.3",
     "formdata-node": "^4.4.1",
     "google-play-scraper": "^10.0.0",
     "human-readable": "^0.2.1",
@@ -103,6 +106,8 @@
     "stream": "^0.0.2",
     "syntax-error": "^1.4.0",
     "terminal-image": "^2.0.0",
+    "tiktokdl": "^0.0.5",
+    "url": "^0.11.4",
     "url-regex-safe": "^3.0.0",
     "util": "^0.12.5",
     "wa-sticker-formatter": "^4.3.2",
@@ -111,8 +116,5 @@
     "youtube-music-api": "^1.0.6",
     "yt-search": "^2.10.4",
     "ytdl-core": "^4.11.5"
-  },
-  "optionalDependencies": {
-    "@xct007/frieren-scraper": "npm:@xct007/frieren-scraper@latest"
   }
 }
