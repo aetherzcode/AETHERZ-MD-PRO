@@ -1,8 +1,19 @@
 import fetch from 'node-fetch';
 
 let handler = async (m, { conn }) => {
-  let res = await fetch(`https://api.betabotz.eu.org/api/random/taugasih?apikey=${lann}`).then(result => result.json());
-  conn.reply(m.chat, `“${res.taugasih}”`, m);
+  try {
+    let res = await fetch(`https://api.betabotz.eu.org/api/random/taugasih?apikey=${global.lann}`);
+    let json = await res.json();
+    
+    if (!json.taugasih) {
+      throw new Error('Data tidak ditemukan di respons API.');
+    }
+    
+    conn.reply(m.chat, `${json.taugasih}`, m);
+  } catch (error) {
+    console.error(error);
+    conn.reply(m.chat, 'Terjadi kesalahan saat memproses permintaan.', m);
+  }
 };
 
 handler.help = ['taugasih'];
@@ -12,4 +23,4 @@ handler.limit = true;
 handler.admin = false;
 handler.fail = null;
 
-export default handler;;
+export default handler;
