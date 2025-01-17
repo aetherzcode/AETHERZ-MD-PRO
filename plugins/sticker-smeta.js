@@ -13,7 +13,7 @@ let handler = async (m, { conn, text }) => {
 		if (!img) throw 'Reply a sticker!'
 		let img2 = new Image()
         await img2.load(await m.quoted.download())
-		stiker = await addExif(img, packname || '', author || '\n\nAetherzCode\nInsta: aetherz17_\n\n')
+		stiker = await addExif(img, packname || '', author || '\n\nAetherzCode\nInstagram: aetherz17_\n\n')
 	} catch (e) {
 		console.error(e)
 		if (Buffer.isBuffer(e)) stiker = e
