@@ -4,49 +4,54 @@ SCRIPT BY © AETHERZCODE
 •• instagram: @aetherz17_
 •• (github.com/aetherzcode) 
 */
-import fetch from "node-fetch";
+import axios from 'axios';
 
-let wm = "© AETHERZCODE";
-let link = { web: "https://aetherz.xyz" };
-global.aetherzjpg = "https://files.catbox.moe/3cj9sd.jpg";
+let previousMessages = [];
 
-let handler = async (m, { conn, usedPrefix, command, text }) => {
-    try {
-        if (!text) throw `Contoh penggunaan: ${usedPrefix + command} Hai Meta LLAMA`;
+const handler = async (m, { text, usedPrefix, command, conn }) => {
+  if (!text) 
+    return conn.reply(m.chat, '*Example :* .llama Siapa presiden Indonesia?', m);
 
-        await conn.sendMessage(m.chat, { react: { text: `🪀`, key: m.key } });
+  let name = conn.getName(m.sender);
 
-        let response = await fetch(`https://api.ryzendesu.vip/api/ai/meta-llama?text=${encodeURIComponent(text)}`);
-        if (!response.ok) throw `Error API: ${response.status} - ${response.statusText}`;
+  await conn.sendMessage(m.chat, { react: { text: "⏳", key: m.key } });
 
-        let data = await response.json();
-        console.log("Respons API:", data);
+  let prompt = "You are a friendly AI.";
 
-        if (data.action === "success" && data.response) {
-            await conn.sendMessage(m.chat, {
-                text: data.response,
-                contextInfo: {
-                    externalAdReply: {
-                        title: "L L A M A",
-                        body: wm,
-                        thumbnailUrl: global.aetherzjpg,
-                        sourceUrl: link.web,
-                        mediaType: 1,
-                        renderLargerThumbnail: true
-                    }
-                }
-            });
-        } else {
-            console.log("API mengembalikan respons yang tidak valid:", data);
-            await m.reply("Maaf, tidak ada respons dari API atau terjadi kesalahan.");
-        }
-    } catch (error) {
-        console.error("Terjadi kesalahan:", error);
-        await m.reply("Terjadi kesalahan dalam menjalankan perintah.");
-    }
+  let messages = [
+    ...previousMessages,
+    {
+      role: 'system',
+      content: "Ubah gaya bicaramu agar lebih seperti seorang teman yang ramah. Gunakan bahasa yang sopan dan mudah dipahami. Kamu adalah asisten pintar yang bernama 'Llama'. Jawab semua pertanyaan dengan lengkap dan jelas."
+    },
+    { role: 'user', content: text }
+  ];
+
+  try {
+    let response = await axios.get('https://api.siputzx.my.id/api/ai/llama33', {
+      params: {
+        prompt: prompt,
+        text: text
+      }
+    });
+
+    let reply = response.data.data || "Maaf, saya tidak bisa menjawab itu sekarang.";
+
+    let hasil = `*◯ Aᴇᴛʜᴇʀᴢ-ᴍᴅ Pʀᴏ*\n\n${reply}`;
+    await conn.sendMessage(m.chat, { text: hasil });
+
+    previousMessages = messages;
+
+    await conn.sendMessage(m.chat, { react: { text: "✅", key: m.key } });
+  } catch (error) {
+    console.error("Error saat memanggil API Llama:", error);
+    await conn.reply(m.chat, "Terjadi kesalahan saat memproses permintaanmu. Coba lagi nanti!", m);
+  }
 };
 
-handler.help = ["llama"];
-handler.tags = ["aiv2"];
-handler.command = /^aillama|llama$/i;
+handler.help = ['llama <text>'];
+handler.command = /^llama$/i;
+handler.tags = ['ai'];
+handler.premium = false;
+
 export default handler;
