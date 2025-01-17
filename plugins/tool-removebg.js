@@ -9,7 +9,7 @@ let handler = async (m, { conn, usedPrefix, command }) => {
         m.reply(wait)
         let img = await q.download()
         let url = await uploadImage(img)
-        let out = API('lol', '/api/removebg', { img: url }, 'apikey')
+        let out = API('lann', '/api/tools/removebg', { img: url }, 'apikey')
         await conn.sendFile(m.chat, out, 'out.png', '*DONE (≧ω≦)ゞ*', m)
     } catch {
         let q = m.quoted ? m.quoted: m
