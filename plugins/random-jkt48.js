@@ -7,12 +7,17 @@ const handler = async (m, { conn, usedPrefix, text, args, command }) => {
 
   if (!count) {
     try {
-      const tio = await fetch(`https://api.betabotz.eu.org/api/search/pinterest?text1=${query}&apikey=${global.lann}`);
+      const tio = await fetch(`https://api.kenshiro.biz.id/api/search/pinterest?q=${query}`);
       const p = await tio.json();
-      let url = p.result[Math.floor(Math.random() * p.result.length)];
+
+      if (!p.status || !p.data || !Array.isArray(p.data)) {
+        throw new Error("Response API tidak valid.");
+      }
+
+      let url = p.data[Math.floor(Math.random() * p.data.length)].images_url;
       conn.sendFile(m.chat, url, 'loliiiii.jpg', `*🔖R A N D O M   J K T 4 8*`, m);
     } catch (error) {
-      console.log(error);
+      console.error(error);
       conn.reply(m.chat, 'Terjadi kesalahan saat menjalankan perintah.', m);
     }
   } else {
@@ -20,20 +25,24 @@ const handler = async (m, { conn, usedPrefix, text, args, command }) => {
       throw 'Jumlah gambar terlalu banyak! Maksimal 10 gambar.';
     }
     try {
-      let url = `https://api.betabotz.eu.org/api/search/pinterest?text1=${query}&apikey=${global.lann}`;
+      let url = `https://api.kenshiro.biz.id/api/search/pinterest?q=${query}`;
       let res = await fetch(url);
       let data = await res.json();
-  
-      let images = data.result;
-  
+
+      if (!data.status || !data.data || !Array.isArray(data.data)) {
+        throw new Error("Response API tidak valid.");
+      }
+
+      let images = data.data;
+
       for (let i = 0; i < count; i++) {
-        let image = images[Math.floor(Math.random() * images.length)];
+        let image = images[Math.floor(Math.random() * images.length)].images_url;
         setTimeout(() => {
           conn.sendFile(m.chat, image, '', `*🔖R A N D O M   J K T 4 8*`, m);
         }, i * 5000);
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
       conn.reply(m.chat, 'Terjadi kesalahan saat menjalankan perintah.', m);
     }
   }
