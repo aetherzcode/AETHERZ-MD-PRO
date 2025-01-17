@@ -4,16 +4,18 @@
   <img src="https://files.catbox.moe/3cj9sd.jpg"/>
 </div>
 
-**Information:**
-- Have used multi auth sessions 
-- Using the latest baileys
-- Update Information [`Whatsapp Newsletter`](https://whatsapp.com/channel/0029Vawy95bKwqSKVROTsi47)
+**Informasi Script:**
+- Telah menggunakan multi auth sessions 
+- Menggunakan baileys yang terbaru
+- Upload/Update File Bot Ke Repository GitHub
+- Delete File Bot Di Repository GitHub
+- Rename File Bot Yg Ada Di Repository GitHub
 
 **Run script:**
 
-```npm start``` **Used Terminal QR**
+```npm start``` **Menggunakan Terminal QR**
 
-```npm run pairing``` **Used Pairing Code**
+```npm run pairing``` **Menggunakan Pairing Code**
 
 ```npm test``` **Test script**
 
@@ -22,22 +24,28 @@
 || features ||
 |----------|----------|----------|
 | Ai Menu | Anime Menu | Download Menu |
-| Fun Menu | Game Menu | Group Menu |
+| AiV2 Menu | Game Menu | Group Menu |
 | info Menu | Internet Menu | Islamic Menu |
 | Main Menu | Maker Menu | Premium Menu |
 | Owner Menu | Quotes Menu | Rpg Menu |
-| Stiker Menu | Tools Menu |
+| Stiker Menu | Tools Menu | Fun Menu |
 
-## Warning Please Read This!  
+## Peringatan Harap Baca Ini!  
 
-This script is in 60% Encryption
-if you want without Encryption please buy it at a price of IDR 50,000
+Skrip ini di Enkripsi 60%.  
+Jika ingin tanpa Enkripsi silahkan membelinya dengan harga Rp 50.000.  
+
+<a href="https://wa.me/6295798045817?text=Halo%20mas%20aether%2C%20saya%20mau%20beli%20sc%20AETHERZ-MD-PRO%20No%20Enc%20nya%20mas">
+    <img src="https://i.ibb.co/y4pnqYv/buy-now.webp" alt="Buy Script No Enc" width="150" height="auto" />
+</a>
+
+
 
 ## License
 
 This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
 
-## Change NAME, NUMBER Owner and add THUMBNAILS
+## Ubah NAME, NUMBER Owner and add THUMBNAILS
 
 - Open the ```config.js``` file and change it as you wish.
 
@@ -109,14 +117,13 @@ global.aetherzjpg = 'https://files.catbox.moe/3cj9sd.jpg', // UBAH GAMBAR LU
 global.thumbnail = 'https://files.catbox.moe/3cj9sd.jpg', // UBAH GAMBAR LU   
 /*==============================*/
 
-## Scripts Must Use The Web API Below
+## Script Harus Menggunakan Web API Di Bawah Ini
   
-- BetaBotz API [`Website`](https://api.betabotz.eu.org) ```Must Use```
+- BetaBotz API [`Situs Web`](https://api.betabotz.eu.org) ```Harus Digunakan```
   
-- LolHuman API [`Website`](https://api.lolhuman.xyz) ```Must Use```
+- LolHuman API [`Situs Web`](https://api.lolhuman.xyz) ```Harus Digunakan```
 
-After registering and getting an apikey, you can paste your apikey in ```config.js```
-
+Setelah mendaftar dan mendapatkan apikey, Anda dapat menempelkan apikey Anda di ```config.js```
 ```javascript
 
 // ISI APIKEY KALIAN DI BAGIAN '_' SIMBOL ' JANGAN DI HAPUS
@@ -138,12 +145,12 @@ global.APIKeys = {
 ```
 
 
-## FOR WINDOWS/VPS/RDP USERS
+## UNTUK PENGGUNA WINDOWS/VPS/RDP
 
 * Download & Install Git [`Click here`](https://git-scm.com/downloads)
 * Download & Install NodeJS [`Click here`](https://nodejs.org/en/download)
 * Download & Install ImageMagick [`Click here`](https://imagemagick.org/script/download.php)
-* Download & Install FFmpeg [`Click here`](https://ffmpeg.org/download.html) (**Don't Forget to Add FFmpeg to the PATH environment variable**)
+* Download & Install FFmpeg [`Click here`](https://ffmpeg.org/download.html) (**Jangan Lupa Tambahkan FFmpeg ke variabel lingkungan PATH**)
 
 ```bash
 git clone https://github.com/aetherzcode/AETHERZ-MD-PRO
