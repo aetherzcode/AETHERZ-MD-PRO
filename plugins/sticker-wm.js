@@ -11,7 +11,7 @@ let handler = async (m, { conn, text }) => {
     if (!/webp/.test(mime)) throw 'Reply sticker!'
     let img = await m.quoted.download()
     if (!img) throw 'Reply a sticker!'
-    stiker = await addExif(img, packname || '', author || global.info.namebot + ' © 2024')
+    stiker = await addExif(img, packname || '', author || global.info.namebot + ' © 2025')
   } catch (e) {
     console.error(e)
     if (Buffer.isBuffer(e)) stiker = e
