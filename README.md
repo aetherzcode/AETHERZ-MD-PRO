@@ -96,17 +96,14 @@ global.mods = []
 global.prems = [] 
 /*==============================*/
 /*=========== GlobalAPI ============*/
-global.lol = '_'
 global.lann = '_'
 /*==============================*/
 /*==============API ==============*/
 global.APIs = {
-    lol: 'https://api.lolhuman.xyz',
     lann: 'https://api.betabotz.eu.org'
 }
 global.APIKeys = {
-    'https://api.lolhuman.xyz': '_',
-    'https://api.betabotz.eu.org' : '_'
+    'https://api.betabotz.eu.org' : global.lann
 }
 /*==============================*/
 /*======== WATERMARK ========*/
@@ -123,28 +120,14 @@ global.thumbnail = 'https://files.catbox.moe/3cj9sd.jpg', // UBAH GAMBAR LU
 ## Script Harus Menggunakan Web API Di Bawah Ini
   
 - BetaBotz API [`Situs Web`](https://api.betabotz.eu.org) ```Harus Digunakan```
-  
-- LolHuman API [`Situs Web`](https://api.lolhuman.xyz) ```Harus Digunakan```
 
 Setelah mendaftar dan mendapatkan apikey, Anda dapat menempelkan apikey Anda di ```config.js```
 ```javascript
 
 // ISI APIKEY KALIAN DI BAGIAN '_' SIMBOL ' JANGAN DI HAPUS
 /*=========== GlobalAPI ============*/
-global.lol = '_'
 global.lann = '_'
 
-
-/*============== API ==============*/
-// ISI APIKEY KALIAN DI BAGIAN '_' SIMBOL ' JANGAN DI HAPUS
-global.APIs = {
-  btc: 'https://api.lolhuman.xyz',
-  lann: 'https://api.betabotz.org'
-} 
-global.APIKeys = {
-    'https://api.lolhuman.xyz': '_',
-    'https://api.betabotz.eu.org' : '_'
-}
 ```
 
 
@@ -175,9 +158,9 @@ npm start
 
 
 ##### All Contributors
-<a href="https://github.com/LoL-Human"><img src="https://github.com/LoL-Human.png?size=100" width="100" height="100"></a> | [![Erlan](https://github.com/ERLANRAHMAT.png?size=100)](https://github.com/ERLANRAHMAT) 
+<a href="https://github.com/aetherzcode"><img src="https://github.com/aetherzcode.png?size=100" width="100" height="100"></a> | [![Erlan](https://github.com/ERLANRAHMAT.png?size=100)](https://github.com/ERLANRAHMAT) 
 ---|---
-[LolHuman](https://github.com/LoL-Human)  | [Betabotz](https://github.com/ERLANRAHMAT)
+[AETHER](https://github.com/aetherzcode)  | [Betabotz](https://github.com/ERLANRAHMAT)
 Contributor | Contributor |
 
 ##### Special Thanks To
