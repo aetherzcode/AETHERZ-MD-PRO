@@ -44,13 +44,13 @@ Jika ingin tanpa Enkripsi silahkan membelinya dengan harga Rp 50.000.
 
 
 
-## License
+## LICENSE
 
-This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
+Proyek ini dilisensikan di bawah **MIT License** - lihat file [LICENSE](LICENSE) untuk detailnya.
 
 ## Ubah NAME, NUMBER Owner and add THUMBNAILS
 
-- Open the ```config.js``` file and change it as you wish.
+- Buka file ```config.js``` dan ubah sesuai keinginan.
 
 ```javascript
 /*=========== LINK ============*/
