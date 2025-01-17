@@ -15,7 +15,7 @@ const handler = async (m, { conn, usedPrefix, text, args, command }) => {
       }
 
       let url = p.data[Math.floor(Math.random() * p.data.length)].images_url;
-      conn.sendFile(m.chat, url, 'loliiiii.jpg', `*🔖R A N D O M   J K T 4 8*`, m);
+      conn.sendFile(m.chat, url, 'loliiiii.jpg', '🔖R A N D O M   J K T 4 8', m);
     } catch (error) {
       console.error(error);
       conn.reply(m.chat, 'Terjadi kesalahan saat menjalankan perintah.', m);
@@ -38,7 +38,7 @@ const handler = async (m, { conn, usedPrefix, text, args, command }) => {
       for (let i = 0; i < count; i++) {
         let image = images[Math.floor(Math.random() * images.length)].images_url;
         setTimeout(() => {
-          conn.sendFile(m.chat, image, '', `*🔖R A N D O M   J K T 4 8*`, m);
+          conn.sendFile(m.chat, image, '', '🔖R A N D O M   J K T 4 8', m);
         }, i * 5000);
       }
     } catch (error) {
