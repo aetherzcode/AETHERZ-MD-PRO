@@ -35,8 +35,7 @@ global.info = {
 	nomorown: '6285798045817',
 	namebot: '© Aᴇᴛʜᴇʀᴢ ᴍᴅ Pʀᴏ',
 	nameown: 'AETHER',
-	email: process.env.EMAIL,
-        pwemail: process.env.PWEMAIL
+	email: 'aetherscode@gmail.com'
 }
 /*==============================*/
 /*=========== STAFF ============*/
@@ -52,12 +51,10 @@ global.lann = '_'
 /*==============================*/
 /*==============API ==============*/
 global.APIs = {
-    lol: 'https://api.lolhuman.xyz',
     lann: 'https://api.betabotz.eu.org'
 }
 global.APIKeys = {
-    'https://api.lolhuman.xyz': '_',
-    'https://api.betabotz.eu.org' : '_'
+    'https://api.betabotz.eu.org' : global.lann
 }
 /*==============================*/
 /*======== WATERMARK ========*/
