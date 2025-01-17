@@ -15,7 +15,11 @@ const handler = async (m, { conn, isROwner }) => {
       let zipCommand = `
          zip -r ${zipFileName} * \
          -x "node_modules/*" \
-         -x "tmp/*.webp"
+         -x "tmp/*" \
+         "tmp/1736424358240.mp3" \
+         "tmp/1736424358245.mp3.opus" \
+         "tmp/1736424710313.mp3" \
+         "tmp/1736424710319.mp3.opus"
       `;
 
       await exec_(zipCommand);
