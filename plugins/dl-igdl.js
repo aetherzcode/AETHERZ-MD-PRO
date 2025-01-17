@@ -1,24 +1,61 @@
-import fetch from 'node-fetch';
-import util from 'util';
+import axios from 'axios';
+import cheerio from 'cheerio';
 
-let handler = async (m, { conn, args, usedPrefix, command }) => {
-    if (!args[0]) throw `Use example ${usedPrefix}${command} https://www.instagram.com/p/ByxKbUSnubS/?utm_source=ig_web_copy_link`
-    m.reply(wait)
-     const url = args[0];
-     let re = await fetch(`https://api.betabotz.eu.org/api/download/igdowloader?url=${url}&apikey=${global.lann}`)
-     let message = await re.json()  
-    try {             
-        for (let i of message.message ) {
-            conn.sendFile(m.chat, i._url, null, `*Instagram Downloader*`, m)
+const yt1s = {
+  dl: async (link) => {
+    try {
+      const { data } = await axios.post(
+        'https://yt1s.io/api/ajaxSearch',
+        new URLSearchParams({ p: 'home', q: link, w: '', lang: 'en' }),
+        {
+          headers: {
+            'User-Agent': 'Postify/1.0.0',
+            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+          },
         }
-    } catch(err) {
-        m.reply(`${eror}`)
-    }
-}
+      );
 
-handler.help = ['ig'].map(v => v + ' <url>')
-handler.tags = ['downloader']
-handler.command = /^(Instagram|ig|igdl|igstory)$/i
-handler.limit = 5
+      if (data.status !== 'ok') throw new Error('Tidak ada respons dari API.');
+
+      const $ = cheerio.load(data.data);
+      return $('a.abutton.is-success.is-fullwidth.btn-premium')
+        .map((_, el) => ({
+          title: $(el).attr('title'),
+          url: $(el).attr('href'),
+        }))
+        .get();
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  },
+};
+
+let handler = async (m, { conn, command, text, usedPrefix }) => {
+  if (!text) throw `Gunakan perintah: ${usedPrefix}${command} <link>`;
+
+  await conn.sendMessage(m.chat, { text: 'Loading...' }, { quoted: m });
+
+  try {
+    const downloadLinks = await yt1s.dl(text);
+
+    if (downloadLinks.length < 2) {
+      throw new Error('Maaf, tidak ada link unduhan yang kedua ditemukan.');
+    }
+
+    const { url } = downloadLinks[1];
+    await conn.sendMessage(m.chat, { video: { url }, caption: 'Ini videonya kak.' });
+  } catch (error) {
+    m.reply(`Terjadi kesalahan: ${error.message}`);
+  } finally {
+    await conn.sendMessage(m.chat, { text: 'Loading selesai.' }, { quoted: m });
+  }
+};
+
+handler.help = ['ig <link>'];
+handler.tags = ['downloader'];
+handler.command = /^(igdl|instagram|ig)$/i;
+
+handler.limit = 5;
 
 export default handler;
