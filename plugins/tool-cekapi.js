@@ -1,21 +1,32 @@
-import fetch from 'node-fetch'
+import fetch from 'node-fetch';
 
 let handler = async (m, { conn, args }) => {
-    if (!args[0]) return m.reply('Apikeynya mana?')
-    let res = await fetch(API('lol', '/api/checkapikey', { apikey: args[0] }, false))
-    let lol = await res.json()
-    conn.reply(m.chat, `• *ᴛʏᴘᴇ:* LOLHUMAN
+    if (!args[0]) return m.reply('Apikeynya mana?');
+    try {
+        let res = await fetch(`https://api.betabotz.eu.org/api/checkkey?apikey=${args[0]}`);
+        let lann = await res.json();
+
+        if (!lann.result) {
+            return conn.reply(m.chat, 'API Key tidak valid atau tidak ditemukan.', m);
+        }
+
+        conn.reply(m.chat, `• *ᴛʏᴘᴇ:* BETABOTZ
 • *ᴀᴘɪᴋᴇʏ:* ${args[0]}
 
-• *ɴᴀᴍᴇ:* ${lol.result.username}
-• *ᴛᴏᴛᴀʟ ʜɪᴛ:* ${lol.result.requests}
-• *ʜɪᴛ ᴛᴏᴅᴀʏ:* ${lol.result.today}
-• *ᴀᴄᴄᴏᴜɴᴛ:* ${lol.result.account_type}
+• *ɴᴀᴍᴇ:* ${lann.result.username}
+• *ᴛᴏᴛᴀʟ ʜɪᴛ:* ${lann.result.totalHit || 'Tidak tersedia'}
+• *ʜɪᴛ ᴛᴏᴅᴀʏ:* ${lann.result.todayHit || 'Tidak tersedia'}
+• *ᴀᴄᴄᴏᴜɴᴛ:* ${lann.result.role || 'Tidak tersedia'}
 
-• *ᴇxᴘɪʀᴇᴅ:* ${lol.result.expired}`, m)
-}
-handler.help = ['lolapikey']
-handler.tags = ['tools']
-handler.command = /^lol(apikey|api|key)$/i
+• *ᴇxᴘɪʀᴇᴅ:* ${lann.result.expired || 'Tidak tersedia'}`, m);
+    } catch (error) {
+        console.error(error);
+        conn.reply(m.chat, 'Terjadi kesalahan saat memeriksa API Key.', m);
+    }
+};
 
-export default handler
+handler.help = ['betaapikey'];
+handler.tags = ['tools'];
+handler.command = /^beta(apikey|api|key)$/i;
+
+export default handler;
