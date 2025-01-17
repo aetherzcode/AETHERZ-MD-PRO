@@ -3,7 +3,7 @@ import fetch from 'node-fetch'
 let handler = async (m, { conn, text, usedPrefix, command }) => {
   if (!text) throw `Contoh\n${usedPrefix + command} ryhar.store`
   
-  let result = await fetch(`https://api.lolhuman.xyz/api/stalkig/${text}?apikey=${global.lol}`)
+  let result = await fetch(`https://api.betabotz.eu.org/api/stalk/ig?username=${text}&apikey=${global.lann}`)
   let res = await result.json()
   
   if (!res) throw res.text
