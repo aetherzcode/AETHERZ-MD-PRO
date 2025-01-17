@@ -1,13 +1,15 @@
-import fetch from 'node-fetch'
-let handler = async(m, { conn, text }) => {
-  let res = await fetch(API('lol', '/api/random/faktaunik', null, 'apikey'))
-  if (!res.ok) throw await res.text()
-  let json = await res.json()
-  if(!json.result) throw json
-  conn.reply(m.chat, json.result, m)
-}
-handler.help = ['tahugasih']
-handler.tags = ['internet']
-handler.command = /^(taugasih|tahugasih)$/i
-handler.limit = true
-export default handler
+import fetch from 'node-fetch';
+
+let handler = async (m, { conn }) => {
+  let res = await fetch(`https://api.betabotz.eu.org/api/random/taugasih?apikey=${lann}`).then(result => result.json());
+  conn.reply(m.chat, `“${res.taugasih}”`, m);
+};
+
+handler.help = ['taugasih'];
+handler.tags = ['fun'];
+handler.command = /^(taugasih)$/i;
+handler.limit = true;
+handler.admin = false;
+handler.fail = null;
+
+export default handler;;
