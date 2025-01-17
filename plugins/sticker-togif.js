@@ -1,26 +1,33 @@
-import { webp2mp4 } from '../lib/webp2mp4.js'
+import fetch from 'node-fetch';
+import uploader from '../lib/uploadFile.js';
 
-let handler = async (m, { conn, usedPrefix, command }) => {
-if (!m.quoted) throw `balas stiker dengan caption *${usedPrefix + command}*`
-   let q = m.quoted ? m.quoted : m
-   let mime = (q.msg || q).mimetype || ''
-    if (!/webp/g.test(mime)) throw `balas stiker dengan caption *${usedPrefix + command}*`
-    let media = await q.download?.()
-    let out = Buffer.alloc(0)
-    if (/webp/g.test(mime)) {
-        out = await webp2mp4(media)
+const handler = async (m, { conn, usedPrefix, command }) => {
+    let q = m.quoted ? m.quoted : m;
+    let mime = (q.msg || q).mimetype || q.mediaType || '';
+    if (/webp/.test(mime)) {
+        let buffer = await q.download();
+        await m.reply('Tunggu sebentar...');
+        try {
+            let media = await uploader(buffer);
+            let json;
+            if (command === 'togif') {
+                json = await (await fetch(`https://api.betabotz.eu.org/api/tools/webp2mp4?url=${media}&apikey=${global.lann}`)).json();
+            } else if (command === 'toimg') {
+                json = await (await fetch(`https://api.betabotz.eu.org/api/tools/webp2png?url=${media}&apikey=${global.lann}`)).json();
+            }
+            await conn.sendFile(m.chat, json.result, null, "*DONE*", m);
+        } catch (err) {
+            console.error(err);
+            throw err;
+        }
+    } else {
+        throw `Reply sticker with command ${usedPrefix + command}`;
     }
-    await conn.sendMessage(m.chat, {
-                video: { url: out },
-                caption: '✅ sticker a gif',
-                gifPlayback: true,
-                gifAttribution: Math.floor(Math.random() * 2) + 1
-            }, {
-                quoted: m
-            })
-}
-handler.help = ['togif (reply media)']
-handler.tags = ['sticker']
-handler.command = /^togifs?$/i
+};
 
-export default handler
+handler.help = ['toimg2', 'togif'];
+handler.tags = ['tools'];
+handler.command = /^(toimg2|togif)$/i;
+handler.limit = 5;
+
+export default handler;
