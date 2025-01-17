@@ -16,6 +16,7 @@ let handler = async (m, { conn, args }) => {
 • *ɴᴀᴍᴇ:* ${lann.result.username}
 • *ᴛᴏᴛᴀʟ ʜɪᴛ:* ${lann.result.totalHit || 'Tidak tersedia'}
 • *ʜɪᴛ ᴛᴏᴅᴀʏ:* ${lann.result.todayHit || 'Tidak tersedia'}
+• *sɪsᴀ ʟɪᴍɪᴛ:* ${lann.result.limit || 'Tidak tersedia'}
 • *ᴀᴄᴄᴏᴜɴᴛ:* ${lann.result.role || 'Tidak tersedia'}
 
 • *ᴇxᴘɪʀᴇᴅ:* ${lann.result.expired || 'Tidak tersedia'}`, m);
