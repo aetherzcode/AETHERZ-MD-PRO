@@ -5,7 +5,7 @@ import { extractImageThumb } from "@whiskeysockets/baileys"
 let handler = async(m, { conn, usedPrefix, command, text }) => {
   if (!text) throw `Contoh\n${usedPrefix + command} 344253`
   if (isNaN(text)) throw `Contoh\n${usedPrefix + command} 344253`
-  let f = await fetch(API('https://api.lolhuman.xyz', '/api/nhentai/' + text, null, 'apikey'))
+  let f = await fetch(API('https://api.betabotz.eu.org', '/api/nsfw/hentai' + text, null, 'apikey'))
   let xx = await f.json()
   await m.reply('_In progress, please wait..._')
   let pages = xx.result.image
