@@ -1,16 +1,18 @@
-let handler = async (m, { conn, usedPrefix, command }) => {
-		
-			await conn.sendMessage(m.chat, { video: { url: dir[Math.floor(Math.random() * dir.length)] }, caption: `_nih_` }, { quoted: m })
-	}
+import fetch from 'node-fetch';
+let handler = async (m, { conn }) => {
+  try {
+    conn.reply(m.chat, wait, m)
+    let res = await fetch(`https://api.betabotz.eu.org/api/download/storyanime?apikey=${lann}`);
+    let json = await res.json();
+      conn.sendFile(m.chat, json.result.url, 'anime_story.mp4', "*STORY ANIME*", m);
+  } catch (e) {
+    throw `*Error:* ${eror}`;
+  }
+};
 
-handler.help = ['storyanime']
-handler.tags = ['anime']
-handler.command = /^(stor(i|y)a?nime|a?nimestor(i|y))$/i
-handler.limit = true
+handler.help = ['storyanime'];
+handler.tags = ['downloader'];
+handler.command = /^(storyanime)$/i;
+handler.limit = 5 
 
-export default handler
-
-const dir = [
-'https://telegra.ph/file/0d4fb93951c620aacb229.mp4',
-'https://g.top4top.io/m_2391c90iu1.mp4'
-];
+export default handler;;
