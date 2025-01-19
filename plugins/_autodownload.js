@@ -6,7 +6,8 @@ const tiktokRegex = /^(?:https?:\/\/)?(?:www\.|vt\.|vm\.|t\.)?(?:tiktok\.com\/)(
 const instagramRegex = /^(?:https?:\/\/)?(?:www\.)?(?:instagram\.com\/(?:p|reel)\/\S+)/i;
 const facebookRegex = /^(?:https?:\/\/)?(?:www\.)?facebook\.com\/(?:\S+)?$/i;
 const ytmp4Regex = /^(?:https?:\/\/)?(?:www\.)?youtube\.com\/(?:watch\?v=\S+)/i;
-const pinterestRegex = /^(?:https?:\/\/)?(?:www\.)?(?:pin\.it|pinterest\.com)\/(?:\S+)?$/i; 
+const pinterestRegex = /^(?:https?:\/\/)?(?:www\.)?(?:pin\.it|pinterest\.com)\/(?:\S+)?$/i;
+const xvideosRegex = /^(?:https?:\/\/)?(?:www\.)?(?:xvideos\.com)\/(?:\S+)?$/i; 
 
 const handler = (m) => m;
 
@@ -243,7 +244,10 @@ handler.before = async function (m, { conn }) {
     } else if (text.match(facebookRegex)) {
         conn.sendMessage(m.chat, { react: { text: '✅', key: m.key } });
         await downloadFacebook(text, m, conn);
-    } else if (text.match(ytmp4Regex)) {
+    } else if (text.match(xvideosRegex)) {
+        conn.sendMessage(m.chat, { react: { text: '✅', key: m.key } });
+        await downloadXVideos(text, m, conn);
+    } else if (text.match(ytmp4Regex)) { 
         conn.sendMessage(m.chat, { react: { text: '✅', key: m.key } });
         await downloadYTMP4(text, m, conn);
     } else if (text.match(pinterestRegex)) { 
