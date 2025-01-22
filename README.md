@@ -157,17 +157,17 @@ npm start
 - Saweria [`Here`](https://saweria.co/aetherscode)
 
 
-##### All Contributors
-<a href="https://github.com/aetherzcode"><img src="https://github.com/aetherzcode.png?size=100" width="100" height="100"></a> | [![Erlan](https://github.com/ERLANRAHMAT.png?size=100)](https://github.com/ERLANRAHMAT) 
----|---
-[AETHER](https://github.com/aetherzcode)  | [Betabotz](https://github.com/ERLANRAHMAT)
-Contributor | Contributor |
+##### Creator
+<a href="https://github.com/aetherzcode"><img src="https://github.com/aetherzcode.png?size=100" width="100" height="100"></a> 
+---|
+[AETHER](https://github.com/aetherzcode) 
+Contributor |
 
 ##### Special Thanks To
-<!--[![Nurutomo](https://github.com/Nurutomo.png?size=100)](https://github.com/Nurutomo)
-[![BochilGaming](https://github.com/BochilGaming.png?size=100)](https://github.com/BochilGaming)
-[![adiwajshing/Baileys](https://github.com/adiwajshing.png?size=100)](https://github.com/adiwajshing)-->
-<a href="https://github.com/BochilGaming"><img src="https://github.com/BochilGaming.png?size=100" width="100" height="100"></a> | [![NURUTOMO](https://github.com/Nurutomo.png?size=100)](https://github.com/Nurutomo) 
----|---
-[Bochilgaming](https://github.com/BochilGaming)  | [Nurutomo](https://github.com/Nurutomo)
-Sensei | Sensei |
+<!--[![BetaBotz](https://github.com/ERLANRAHMAT.png?size=100)](https://github.com/ERLANRAHMAT)
+[![BochilTeam](https://github.com/BochilTeam.png?size=100)](https://github.com/BochilTeam)
+[![Whiskeysockets/Baileys](https://github.com/Whiskeysockets.png?size=100)](https://github.com/Whiskeysockets)-->
+<a href="https://github.com/Whiskeysockets"><img src="https://github.com/Whiskeysockets.png?size=100" width="100" height="100"></a> | [![BOCHILTEAM](https://github.com/BochilTeam.png?size=100)](https://github.com/BochilTeam) | [![ERLANRAHMAT](https://github.com/ERLANRAHMAT.png?size=100)](https://github.com/ERLANRAHMAT) 
+---|---|---
+[WhiskeySockets](https://github.com/Whiskeysockets)  | [BochilTeam](https://github.com/BochilTeam) | [BetaBotz](https://github.com/ERLANRAHMAT)
+Baileys| Scraper | Rest API |
