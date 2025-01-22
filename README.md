@@ -161,7 +161,7 @@ npm start
 <a href="https://github.com/aetherzcode"><img src="https://github.com/aetherzcode.png?size=100" width="100" height="100"></a> 
 ---|
 [AETHER](https://github.com/aetherzcode) 
-Contributor |
+Creator |
 
 ##### Special Thanks To
 <!--[![BetaBotz](https://github.com/ERLANRAHMAT.png?size=100)](https://github.com/ERLANRAHMAT)
