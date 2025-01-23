@@ -107,7 +107,7 @@ function clockString(ms) {
 
 handler.help = ['profile'];
 handler.tags = ['user'];
-handler.command = /^(profile|limit|me)$/i;
+handler.command = /^(profile||me)$/i;
 handler.daftar = true;
 
 export default handler;
