@@ -8,6 +8,7 @@ const facebookRegex = /^(?:https?:\/\/)?(?:www\.)?facebook\.com\/(?:\S+)?$/i;
 const ytmp4Regex = /^(?:https?:\/\/)?(?:www\.)?youtube\.com\/(?:watch\?v=\S+)/i;
 const pinterestRegex = /^(?:https?:\/\/)?(?:www\.)?(?:pin\.it|pinterest\.com)\/(?:\S+)?$/i;
 const xvideosRegex = /^(?:https?:\/\/)?(?:www\.)?(?:xvideos\.com)\/(?:\S+)?$/i; 
+const xnxxRegex = /^(?:https?:\/\/)?(?:www\.)?(?:xnxx\.com)\/(?:\S+)?$/i; 
 
 const handler = (m) => m;
 
@@ -215,6 +216,30 @@ export async function downloadXVideos(link, m, conn) {
     }
 }
 
+// DOWNLOADER Xnxx
+export async function downloadXnxx(link, m, conn) {
+    try {
+        if (global.db.data.users[m.sender].limit > 0) {
+            const response = await fetch(`https://api.betabotz.eu.org/api/download/xnxxdl?url=${link}&apikey=${lann}`);
+            const data = await response.json();
+
+            global.db.data.users[m.sender].limit -= 1;
+
+            if (data.status === true && data.result && data.result.url) {
+                const videoUrl = data.result.url;
+                await conn.sendFile(m.chat, videoUrl, 'video.mp4', `*Xnxx Downloader*\n\n🎥 Judul: ${data.result.title}\n👁️ Views: ${data.result.views}`, m);
+            } else {
+                conn.reply(m.chat, "Video tidak ditemukan atau tidak dapat diunduh!", m);
+            }
+        } else {
+            conn.reply(m.chat, "Limit kamu habis!", m);
+        }
+    } catch (error) {
+        console.error("Error pada downloadXnxx:", error);
+        conn.reply(m.chat, "Terjadi kesalahan saat mencoba mengunduh video Xnxx.", m);
+    }
+}
+
 handler.before = async function (m, { conn }) {
     let chat = global.db.data.chats[m.chat];
 
@@ -247,6 +272,9 @@ handler.before = async function (m, { conn }) {
     } else if (text.match(xvideosRegex)) {
         conn.sendMessage(m.chat, { react: { text: '✅', key: m.key } });
         await downloadXVideos(text, m, conn);
+    } else if (text.match(xnxxRegex)) {
+        conn.sendMessage(m.chat, { react: { text: '✅', key: m.key } });
+        await downloadXnxx(text, m, conn);
     } else if (text.match(ytmp4Regex)) { 
         conn.sendMessage(m.chat, { react: { text: '✅', key: m.key } });
         await downloadYTMP4(text, m, conn);
