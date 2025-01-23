@@ -2,11 +2,11 @@ const items = ['diamond', 'exp']
 let confirmation = {}
 
 async function handler(m, { conn, args, usedPrefix, command }) {
-    if (confirmation[m.sender]) return m.reply('estas haciendo una transferencia')
+    if (confirmation[m.sender]) return m.reply('Anda sedang melakukan transfer')
     let user = global.db.data.users[m.sender]
     const item = items.filter(v => v in user && typeof user[v] == 'number')
     let lol = `✳️ Penggunaan comamdo yang benar 
-*${usedPrefix + command}*  [tipo] [cantidad] [@user]
+*${usedPrefix + command}*  [jenis] [jumlah] [@user]
 
 📌 Contoh : 
 *${usedPrefix + command}* exp 65 @${m.sender.split('@')[0]}
