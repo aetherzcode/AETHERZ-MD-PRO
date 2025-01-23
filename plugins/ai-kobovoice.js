@@ -1,4 +1,4 @@
-const WebSocket = require('ws');
+import WebSocket from "ws";
 
 let handler = async (m, { conn, usedPrefix, command }) => {
   let q = m.quoted ? m.quoted : m;
@@ -108,4 +108,4 @@ handler.help = ["kobovoice *Reply video/audio*"];
 handler.command = ["kobovoice"];
 handler.tags = ["aiv2"];
 
-module.exports = handler;
+export default handler;
