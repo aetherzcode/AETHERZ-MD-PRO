@@ -25,7 +25,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
 		} else if (args[0] && isUrl(args[0])) {
 			//m.reply(wait)
 			stiker = await createSticker(false, args[0], '', author, 20)
-		} else throw `*Reply Gambar/Kirim Gambar Beserta Caption nya lah bjir*`
+		} else throw `Reply Gambarnya/Kirim Gambar Beserta Caption *.${command}*`
 	} catch (e) {
 		console.log(e)
 		stiker = e
