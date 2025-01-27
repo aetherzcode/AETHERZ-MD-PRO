@@ -1,28 +1,44 @@
-import fetch from 'node-fetch'
+import axios from 'axios';
 
-let handler = async (m, { conn, text, usedPrefix, command }) => {
-  if (!text) throw `Contoh\n${usedPrefix + command} ryhar.store`
-  
-  let result = await fetch(`https://api.betabotz.eu.org/api/stalk/ig?username=${text}&apikey=${global.lann}`)
-  let res = await result.json()
-  
-  if (!res) throw res.text
-  
-  let caption = `👤 *Nama:* ${res.result.fullname}
-📝 *Username:* ${res.result.username}
-💌 *Pengikut:* ${res.result.followers}
-❤️ *Mengikuti:* ${res.result.following}
-📷 *Post:* ${res.result.posts} 
-${res.result.bio ? `
-📑 *Bio:*
-${res.result.bio}` : ''}
-`.trim()
+const handler = async (m, { conn, text, prefix, command }) => {
+  if (!text) {
+    return m.reply(`Masukkan username Instagram\n\nContoh:\n${prefix + command} vreden`);
+  }
 
-  await conn.sendFile(m.chat, res.result.photo_profile, 'instagram.jpeg', caption , m)
-}
+  await conn.sendMessage(m.chat, {
+    react: {
+      text: "⏱️",
+      key: m.key,
+    },
+  });
 
-handler.help = ['stalkig']
-handler.tags = ['tools']
-handler.command = /^(stalkig)$/i
+  try {
+    const response = await axios.get(`https://api.vreden.web.id/api/igstalk?query=${text}`);
+    const { result } = response.data;
 
-export default handler
+    await conn.sendMessage(m.chat, {
+      image: {
+        url: result.image,
+      },
+      caption: `*INSTA STALKER*\n\n` +
+        `*Nickname :* ${result.user.username}\n` +
+        `*Fullname :* ${result.user.full_name}\n` +
+        `*Postingan :* ${result.user.media_count}\n` +
+        `*Followers :* ${result.user.follower_count}\n` +
+        `*Following :* ${result.user.following_count}\n` +
+        `*Jenis Akun:* ${result.user.is_business ? "Bisnis" : 'Pribadi'}\n` +
+        `*Bio :*\n${result.user.biography || 'Tidak ada bio.'}`,
+    }, { quoted: m });
+
+  } catch (error) {
+    console.error(error);
+    m.reply("Tidak dapat menemukan username atau terjadi kesalahan pada API.");
+  }
+};
+
+handler.help = ['igstalk <username>', 'stalkig <username>'];
+handler.tags = ['tools'];
+handler.command = ['igstalk', 'stalkig'];
+handler.limit = true;
+
+export default handler;
