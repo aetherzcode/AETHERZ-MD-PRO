@@ -1,30 +1,66 @@
-import { tiktokdl } from 'tiktokdl';
+import { ttdl } from 'aetherz-downloader';
 
-const handler = async (m, { conn, args, usedPrefix, command }) => {
-  if (!args[0]) {
-    throw `Masukkan URL!\n\nContoh:\n${usedPrefix}${command} https://vt.tiktok.com/ZSFNnpxvP/`;
-  }
+let handler = async (m, { conn, usedPrefix, command, text }) => {
+    if (!text) return m.reply(`❌ *Example:* ${usedPrefix + command} https://www.tiktok.com/@username/video/xxxxx`);
 
-  try {
-    if (!args[0].match(/tiktok/gi)) {
-      throw `Berikan URL dari TikTok!`;
+    m.reply("⏳ *Sedang memproses, harap tunggu...*");
+
+    try {
+        let { video, audio, thumbnail, title } = await ttdl(text);
+        if (!video || !audio) throw new Error("⚠️ Gagal mengambil audio atau video dari TikTok.");
+        await conn.sendMessage(
+            m.chat,
+            {
+                video: { url: video },
+                caption: `🎬 *Video:* ${title}`,
+                mimetype: "video/mp4",
+                contextInfo: {
+                    forwardingScore: 1,
+                    isForwarded: true,
+                    externalAdReply: {
+                        title: `🎬 ${title}`,
+                        body: "Download sukses!",
+                        thumbnailUrl: thumbnail,
+                        renderLargerThumbnail: false,
+                        mediaType: 2,
+                        sourceUrl: text,
+                    },
+                },
+            },
+            { quoted: m }
+        );
+        await conn.sendMessage(
+            m.chat,
+            {
+                audio: { url: audio },
+                mimetype: "audio/mpeg",
+                fileName: `${title}.mp3`,
+                contextInfo: {
+                    forwardingScore: 1,
+                    isForwarded: true,
+                    externalAdReply: {
+                        title: `🎵 ${title}`,
+                        body: "Download audio sukses!",
+                        thumbnailUrl: thumbnail,
+                        renderLargerThumbnail: false,
+                        mediaType: 1,
+                        sourceUrl: text,
+                    },
+                },
+            },
+            { quoted: m }
+        );
+
+    } catch (err) {
+        console.error(err);
+        m.reply(`❌ Terjadi kesalahan: ${err.message}`);
     }
-
-    conn.reply(m.chat, 'Sedang diproses...', m);
-    const response = await tiktokdl(args[0]);
-    const { video } = response;
-
-    await conn.sendFile(m.chat, video, 'tiktok.mp4', '*TikTok Downloader*');
-  } catch (e) {
-    console.error(e);
-    throw `Error: ${e.message || e}`;
-  }
 };
 
-handler.help = ['tikdl'];
-handler.command = /^(tikdl)$/i;
-handler.tags = ['downloader'];
-handler.register = true;
-handler.limit = 5;
+handler.help = ["tikdl <link>"];
+handler.tags = ["downloader"];
+handler.command = ["tikdl"];
+handler.limit = true;
+handler.premium = false;
 
 export default handler;
