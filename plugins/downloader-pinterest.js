@@ -10,7 +10,7 @@ const handler = async (m, { usedPrefix, command, conn, args }) => {
   try {
     const query = encodeURIComponent(args.join(" "));
     const response = await fetch(
-      `https://api.ryzendesu.vip/api/search/pinterest?query=${query}`
+      `${APIs.ryzem}/api/search/pinterest?query=${query}`
     );
     const data = await response.json();
 
